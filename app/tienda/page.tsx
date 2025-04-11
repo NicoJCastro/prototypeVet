@@ -15,7 +15,9 @@ export default function ShopPage() {
 
       <div className="flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-64 flex-shrink-0">
-          <ProductFilters />
+          <Suspense fallback={<FiltersSkeleton />}>
+            <ProductFilters />
+          </Suspense>
         </div>
 
         <div className="flex-1">
@@ -40,6 +42,20 @@ function ProductGridSkeleton() {
           <Skeleton className="h-10 w-full" />
         </div>
       ))}
+    </div>
+  )
+}
+
+function FiltersSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Skeleton className="h-8 w-24" />
+      <Skeleton className="h-10 w-full" />
+      <div className="space-y-4">
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+      </div>
     </div>
   )
 }
